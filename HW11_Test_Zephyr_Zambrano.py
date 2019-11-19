@@ -64,18 +64,18 @@ class TestRepository(unittest.TestCase):
     def test_instructor_table_db(self):
         """ Tests that instructor_table_db works properly. """
         pt = PrettyTable(field_names=["CWID", "Name", "Department", "Course", "Students"])
-
-        pt.add_row(["98764", "Cohen, R", "SFEN", "CS 546", 1])
-        
-        pt.add_row(["98763", "Rowland, J", "SFEN", "SSW 810", 4]) 
-        pt.add_row(["98763", "Rowland, J", "SFEN", "SSW 555", 1])
         
         pt.add_row(["98764", "Feynman, R", "CS", "CS 501", 1]) 
         pt.add_row(["98764", "Feynman, R", "CS", "CS 546", 1]) 
-        pt.add_row(["98764", "Feynman, R", "CS", "CS 570", 1]) 
+        pt.add_row(["98764", "Feynman, R", "CS", "CS 570", 1])         
+        
+        pt.add_row(["98763", "Rowland, J", "SFEN", "SSW 555", 1])
+        pt.add_row(["98763", "Rowland, J", "SFEN", "SSW 810", 4])         
+        
+        pt.add_row(["98764", "Cohen, R", "SFEN", "CS 546", 1])
 
         stevens = Repository("SSW-810-Project")
-        pt2 = Repository.instructor_table_db(stevens)
+        pt2 = Repository.instructor_table_db("/Users/Zephyr Zambrano/Documents/GitHub/SSW-810-Project/810_startup.db")
 
         self.assertEqual(pt, pt2)
 

@@ -164,6 +164,9 @@ class Repository: # holds all of the data for a specific organization
         self.student_prettytable()
         self.instructor_prettytable()
         self.major_prettytable()
+        
+        db_path = "/Users/Zephyr Zambrano/Documents/GitHub/SSW-810-Project/810_startup.db"
+        self.instructor_table_db(db_path)
     
     def _get_students(self, path):
         """ Gets the students' information from the "students.txt" file. """
@@ -267,19 +270,19 @@ class Repository: # holds all of the data for a specific organization
         PrettyTable with the results.
         
         """
-        DB_FILE = "/Users/Zephyr Zambrano/Documents/GitHub/SSW-810-Project/810_startup.db"
-        db = sqlite3.connect(DB_FILE)
+        db = sqlite3.connect(db_path)
+        query = """select CWID, Name, Dept, Course, count(*) from instructors join grades on CWID = InstructorCWID
+        group by CWID, Name, Dept, Course"""
         
-        print("Instructor Summary")
+        print("Instructor DB Summary")
         pt = PrettyTable(field_names=["CWID", "Name", "Department", "Course", "Students"])
         
-        # for row in db.execute("select"):
-        #     pt.add_row(row)
-        
-        # select CWID, Name, Dept, Course from instructors join grades on CWID = InstructorCWID
-        # select Course, count(*) as cnt from grades group by StudentCWID
+        for row in db.execute(query):
+            pt.add_row(row)
         
         db.close()
+        
+        print(pt)
 
 
 def file_reading_gen(path, fields, sep=",", header=False):
