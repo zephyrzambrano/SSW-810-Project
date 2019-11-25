@@ -1,0 +1,25 @@
+body {
+    color: black;
+    background-color: lightskyblue;
+    align-content: center;
+    text-align: center;
+}
+
+table {
+    border-width: thick;
+    border-style: dashed;
+    border-color: black;
+    align-content: center;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: lightgray;
+    border-bottom-left-radius: 3%;
+    border-bottom-right-radius: 3%;
+    border-top-left-radius: 1%;
+    border-top-right-radius: 3%;
+}
+
+th {
+    background-color: gray;
+}
